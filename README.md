@@ -7,7 +7,9 @@ Além disso, desenvolvi a lógica do botão "Novo Jogo", permitindo reiniciar a 
 o número sorteado não se repetisse, e deixamos o código mais limpo, legível e eficiente.
 
 ## 📃 Certificado de conclusão
-<img src="imagem/certificadoLogicaDeProgramacao.png" alt="Imagem do certificado" width="300"/>
+<p align="center">
+<img src="img/certificadoLogicaDeProgramacao.PNG" alt="Imagem do certificado" width="550"/>
+</p>
 
 ## 🛠️ Tecnologias utilizadas 
 <div style="display: flex; gap: 10px;">
