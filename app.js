@@ -1,3 +1,5 @@
+let listaDeNumerosSorteados = [];
+let numeroLimite = 10;
 let numeroSecreto =  gerarNumeroAleatorio();  
 let tentativas = 1;
 
@@ -5,15 +7,17 @@ function exibirTexto(tag, texto) {
     let campo = document.querySelector(tag);
     campo.innerHTML = texto;
 }
+
 function exibirMensagemInicial() {
     exibirTexto('h1', 'Seja bem vindo(a) ao jogo de número secreto.');
     exibirTexto('p','Escolha um número de 0 a 10');
 }
-exibirMensagemInicial();
 
+exibirMensagemInicial();
 
 function verificarChute() {
     let chute = document.querySelector('input').value; //O value serve para quando nós queremos verificar apenas o valaor que esta sendo inserido pelo usuario. 
+
     if (chute == numeroSecreto) {
         exibirTexto('h1', 'Você acertou!');
         let palavraTentativa = tentativas > 1 ? 'tentativa' : 'tentativas'; //condição ? valorSeVerdadeiro : valorSeFalso
@@ -29,13 +33,23 @@ function verificarChute() {
     }  else {
             exibirTexto('p', 'O número secreto é maior');
     }
-
     tentativas++;
     limparCampo()
     }
 }
 function gerarNumeroAleatorio() {
-    return parseInt(Math.random() * 10 + 1); //Nesta linha nos geramos o número aleatorio e multiplicamos por 10 e somamos + 1 para que fique de 0 a 10 e não de 0 a 9 
+    let numeroEscolhido = parseInt(Math.random() * numeroLimite + 1);//Nesta linha nos geramos o número aleatorio e multiplicamos por 10 e somamos + 1 para que fique de 0 a 10 e não de 0 a 9 
+    let quantidadeDeElementosNaLista = listaDeNumerosSorteados.length;
+    if(quantidadeDeElementosNaLista == numeroLimite){
+        listaDeNumerosSorteados = [];
+    }
+    if(listaDeNumerosSorteados.includes(numeroEscolhido)){ //O includes serve para nós verificarmos se aquele elemento já está na lista.
+        return gerarNumeroAleatorio();
+    } else {
+        listaDeNumerosSorteados.push(numeroEscolhido); //Com o push nós adicionamos o elemento desejado dentro da lista.
+        console.log(listaDeNumerosSorteados);
+        return numeroEscolhido;
+    }
     //O parseInt serve para transformar o número em inteiro
 }
 
@@ -46,8 +60,8 @@ function limparCampo() {
 
 function reiniciarJogo() {
     numeroSecreto = gerarNumeroAleatorio();
-    chute = 1;
-    exibirMensagemInicial();
     limparCampo();
+    tentativas = 1;
+    exibirMensagemInicial();
     document.getElementById('reiniciar').setAttribute('disabled', true);
 }
